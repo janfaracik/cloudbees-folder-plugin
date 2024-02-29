@@ -24,31 +24,12 @@ THE SOFTWARE.
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
          xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt" xmlns:this="this">
-  <j:set var="iconClass" value="${it.iconColor.getIconClassName()}"/>
-  <j:if test="${iconClass != null}">
-      <j:set var="iconClass" value="${iconClass} icon-xlg"/>
-  </j:if>
-  <h1>
-    <j:choose>
-      <j:when test="${iconClass != null}">
-        <l:icon class="${iconClass}" tooltip="${it.iconColor.description}" />
-      </j:when>
-      <j:otherwise>
-        <l:icon src="${it.iconColor.getImageOf('48x48')}" height="48" width="48" alt="${it.iconColor.description}" tooltip="${it.iconColor.description}" />
-      </j:otherwise>
-    </j:choose>
-    ${it.displayName}
-  </h1>
-  <j:if test="${it.name != it.displayName}">
-    ${%Folder name}: ${it.fullName}
-  </j:if>
   <div id="view-message">
       <div id="systemmessage">
           <j:out value="${app.systemMessage!=null ? app.markupFormatter.translate(app.systemMessage) : ''}"/>
       </div>
       <j:out value="${it.description!=null ? app.markupFormatter.translate(it.description) : ''}"/>
   </div>
-  <this:description />
   <j:choose>
     <j:when test="${!it.supportsMakeDisabled()}">
       <!-- for now, quietly omit the option -->
