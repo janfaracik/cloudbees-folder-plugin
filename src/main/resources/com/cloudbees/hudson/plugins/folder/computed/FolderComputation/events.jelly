@@ -25,8 +25,7 @@
 
 <?jelly escape-by-default='true'?>
 <st:compress xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt">
-  <l:layout title="${it.parent.fullDisplayName} ${it.displayName} Log" norefresh="true">
-    <st:include page="sidepanel.jelly" it="${it.parent}" />
+  <l:layout title="${it.parent.fullDisplayName} ${it.displayName} Log" type="one-column">
     <l:main-panel>
       <h1>
         ${it.parent.pronoun} ${%Events}
