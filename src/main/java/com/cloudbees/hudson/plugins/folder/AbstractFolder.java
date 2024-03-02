@@ -40,23 +40,7 @@ import static hudson.Util.fixEmpty;
 import hudson.XmlFile;
 import hudson.init.InitMilestone;
 import hudson.init.Initializer;
-import hudson.model.AbstractItem;
-import hudson.model.Action;
-import hudson.model.AllView;
-import hudson.model.Descriptor;
-import hudson.model.Failure;
-import hudson.model.HealthReport;
-import hudson.model.Item;
-import hudson.model.ItemGroup;
-import hudson.model.Items;
-import hudson.model.Job;
-import hudson.model.ModifiableViewGroup;
-import hudson.model.Queue;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-import hudson.model.TopLevelItem;
-import hudson.model.View;
-import hudson.model.ViewGroupMixIn;
+import hudson.model.*;
 import hudson.model.listeners.ItemListener;
 import hudson.model.listeners.RunListener;
 import hudson.search.CollectionSearchIndex;
@@ -100,6 +84,8 @@ import jenkins.model.Jenkins;
 import jenkins.model.ModelObjectWithChildren;
 import jenkins.model.ProjectNamingStrategy;
 import jenkins.model.TransientActionFactory;
+import jenkins.model.view.ConfigureViewMenuItem;
+import jenkins.model.view.DeleteViewMenuItem;
 import net.sf.json.JSONObject;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.Beta;
@@ -134,7 +120,7 @@ import org.springframework.security.access.AccessDeniedException;
  */
 @SuppressWarnings({"unchecked", "rawtypes"}) // mistakes in various places
 @SuppressFBWarnings("DMI_RANDOM_USED_ONLY_ONCE") // https://github.com/spotbugs/spotbugs/issues/1539
-public abstract class AbstractFolder<I extends TopLevelItem> extends AbstractItem implements TopLevelItem, ItemGroup<I>, ModifiableViewGroup, StaplerFallback, ModelObjectWithChildren, StaplerOverridable {
+public abstract class AbstractFolder<I extends TopLevelItem> extends AbstractItem implements TopLevelItem, ItemGroup<I>, ModifiableViewGroup, StaplerFallback, ModelObjectWithChildren, StaplerOverridable, HideActionsable {
 
     /**
      * Our logger.
@@ -1265,4 +1251,8 @@ public abstract class AbstractFolder<I extends TopLevelItem> extends AbstractIte
         }
     }
 
+    @Override
+    public List<Class<? extends Action>> hideActions() {
+        return List.of(ConfigureViewMenuItem.class, DeleteViewMenuItem.class);
+    }
 }

@@ -27,6 +27,7 @@ THE SOFTWARE.
     <st:include page="sidepanel.jelly" />
 
     <l:main-panel>
+      <h1>New view</h1>
       <j:invokeStatic var="views" className="hudson.model.View" method="allInstantiable" />
       <n:form nameTitle="${%View name}" action="createView"
               descriptors="${views}" checkUrl="viewExistsCheck" xmlns:n="/lib/hudson/newFromList" />
