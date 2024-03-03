@@ -1,5 +1,6 @@
 package com.cloudbees.hudson.plugins.folder;
 
+import com.cloudbees.hudson.plugins.folder.computed.ComputedFolder;
 import hudson.Extension;
 import hudson.model.Action;
 import hudson.model.AllView;
@@ -26,7 +27,7 @@ public class ConfigureView2MenuItem extends TransientActionFactory<View> {
             return Set.of();
         }
 
-        if (target instanceof AllView) {
+        if (target instanceof AllView || target.getOwner() instanceof ComputedFolder) {
             return Set.of(new Action() {
                 @Override
                 public String getDisplayName() {
