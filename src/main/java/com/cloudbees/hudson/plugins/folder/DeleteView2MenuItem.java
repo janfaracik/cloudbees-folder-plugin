@@ -2,7 +2,6 @@ package com.cloudbees.hudson.plugins.folder;
 
 import hudson.Extension;
 import hudson.model.Action;
-import hudson.model.AllView;
 import hudson.model.View;
 import jenkins.model.TransientActionFactory;
 import jenkins.model.menu.Group;
@@ -27,7 +26,7 @@ public class DeleteView2MenuItem extends TransientActionFactory<View> {
             return Set.of();
         }
 
-        if (target instanceof AllView) {
+        if (!target.getOwner().canDelete(target) || !target.hasPermission(View.DELETE)) {
             return Set.of(new Action() {
                 @Override
                 public String getDisplayName() {
