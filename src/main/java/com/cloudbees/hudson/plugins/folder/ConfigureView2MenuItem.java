@@ -8,7 +8,6 @@ import jenkins.model.TransientActionFactory;
 import jenkins.model.menu.Group;
 import jenkins.model.menu.event.DropdownAction;
 import jenkins.model.menu.event.LinkAction;
-import jenkins.model.view.ConfigureViewMenuItem;
 
 import java.util.Collection;
 import java.util.Set;
@@ -23,7 +22,7 @@ public class ConfigureView2MenuItem extends TransientActionFactory<View> {
 
     @Override
     public Collection<? extends Action> createFor(View target) {
-        if (!(target.getOwner() instanceof Folder)) {
+        if (!(target.getOwner() instanceof AbstractFolder)) {
             return Set.of();
         }
 

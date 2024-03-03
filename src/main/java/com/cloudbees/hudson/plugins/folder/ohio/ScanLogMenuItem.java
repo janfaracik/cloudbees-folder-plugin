@@ -21,11 +21,6 @@ public class ScanLogMenuItem extends TransientActionFactory<View> {
 
     @Override
     public Collection<? extends Action> createFor(View target) {
-        System.out.println("----------");
-        System.out.println(target);
-        System.out.println(target.getOwner());
-        System.out.println(target.getOwner() instanceof ComputedFolder);
-
         if (!(target.getOwner() instanceof ComputedFolder)) {
             return Set.of();
         }
