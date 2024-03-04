@@ -22,7 +22,7 @@ public class DeleteView2MenuItem extends TransientActionFactory<View> {
 
     @Override
     public Collection<? extends Action> createFor(View target) {
-        if (!(target.getOwner() instanceof Folder)) {
+        if (!(target.getOwner() instanceof AbstractFolder)) {
             return Set.of();
         }
 
