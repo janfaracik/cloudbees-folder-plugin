@@ -97,6 +97,7 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import jenkins.model.DirectlyModifiableTopLevelItemGroup;
 import jenkins.model.Jenkins;
 import jenkins.model.ModelObjectWithChildren;
+import jenkins.model.ModelObjectWithContextMenu;
 import jenkins.model.ProjectNamingStrategy;
 import jenkins.model.TransientActionFactory;
 import jenkins.security.stapler.StaplerNotDispatchable;
@@ -1220,6 +1221,20 @@ public abstract class AbstractFolder<I extends TopLevelItem> extends AbstractIte
             throw new Failure(blocker);
         }
     }
+
+    /*
+     * Grabbing the context menu for a Folder object should instead point to the view
+     */
+//    @Override
+//    public ContextMenu doContextMenu(StaplerRequest2 request, StaplerResponse2 response) throws Exception {
+//        var lastAncestor = request.getAncestors().getLast().getObject();
+//
+//        System.out.println("====");
+//        System.out.println(lastAncestor);
+//        System.out.println("====");
+//
+//        return new ContextMenu().from(getPrimaryView(), request, response);
+//    }
 
     /**
      * Allows a subclass to block renames under dynamic conditions.
